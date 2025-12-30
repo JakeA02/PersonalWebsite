@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://jakeadler.com"),
+  metadataBase: new URL("https://jakeadler.dev"),
   title: "Jake Adler | Builder & Founder",
   description: "I build 0-to-1 solutions for complex problems.",
   openGraph: {
