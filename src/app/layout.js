@@ -11,8 +11,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const getBaseUrl = () => {
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+};
+
+
 export const metadata = {
-  metadataBase: new URL("https://jakeadler.dev"),
+  metadataBase: new URL(getBaseUrl()),
   title: "Jake Adler | Builder & Founder",
   description: "I build 0-to-1 solutions for complex problems.",
   openGraph: {
