@@ -14,6 +14,20 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Jake Adler | Builder & Founder",
   description: "I build 0-to-1 solutions for complex problems.",
+  openGraph: {
+    title: "Jake Adler | Builder & Founder",
+    description: "I build 0-to-1 solutions for complex problems.",
+    images: [
+      {
+        url: "/thumbnail.png",
+        width: 1400,
+        height: 900,
+        alt: "Jake Adler | Builder & Founder",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
