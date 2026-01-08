@@ -22,8 +22,8 @@ function TimelineNode({ milestone, index, isVisible }) {
         transition: `all 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.12}s`,
       }}
     >
-      {/* Timeline connector - visible on md+ */}
-      <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2 top-0 h-full z-10">
+      {/* Timeline dot - visible on md+ */}
+      <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2 top-0 z-20">
         {/* Node dot */}
         <div
           className={`w-4 h-4 rounded-full bg-gradient-to-br ${milestone.accent} shadow-lg ring-4 ring-white`}
@@ -31,10 +31,6 @@ function TimelineNode({ milestone, index, isVisible }) {
             boxShadow: `0 0 20px rgba(251, 146, 60, 0.3)`,
           }}
         />
-        {/* Connecting line */}
-        {index < JOURNEY_MILESTONES.length - 1 && (
-          <div className="w-0.5 flex-1 bg-gradient-to-b from-orange-200 to-orange-100 mt-2" />
-        )}
       </div>
 
       {/* Mobile timeline dot */}
@@ -245,7 +241,7 @@ export default function JourneySection() {
                 key={milestone.id}
                 data-index={index}
                 className={index > 0 ? "mt-4 md:-mt-24" : ""}
-                style={{ position: "relative", zIndex: index + 1 }}
+                style={{ position: "relative", zIndex: JOURNEY_MILESTONES.length - index }}
               >
                 <TimelineNode
                   milestone={milestone}
