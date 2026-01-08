@@ -24,7 +24,7 @@ const getBaseUrl = () => {
 
 export const metadata = {
   metadataBase: new URL(getBaseUrl()),
-  title: "Jake Adler | Builder & Founder",
+  title: "Jake Adler | Builder & Founder | UVA CS",
   description: "I build 0-to-1 solutions for complex problems.",
   openGraph: {
     title: "Jake Adler | Builder & Founder",
