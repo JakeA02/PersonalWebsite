@@ -9,7 +9,7 @@ export const JOURNEY_MILESTONES = [
     headline: "Computer Science + Foreign Affairs",
     keyPoints: [
       "Computer Science degree with focus on software engineering",
-      "Foreign Affairs focus on human-centric systems and policy",
+      "Echols Scholar",
       "Mandarin + Spanish language",
     ],
     stat: { value: "University of Virginia", label: "Degree" },
