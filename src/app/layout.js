@@ -26,6 +26,20 @@ export const metadata = {
   metadataBase: new URL(getBaseUrl()),
   title: "Jake Adler | Builder & Founder | UVA CS",
   description: "I build 0-to-1 solutions for complex problems.",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "android-chrome", url: "/favicon/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "android-chrome", url: "/favicon/android-chrome-512x512.png", sizes: "512x512" },
+    ],
+  },
   openGraph: {
     title: "Jake Adler | Builder & Founder",
     description: "I build 0-to-1 solutions for complex problems.",
