@@ -48,7 +48,7 @@ export default function CTA() {
             {/* Social Links */}
             <div className="mt-8 pt-8 border-t border-zinc-700/50">
               <p className="text-zinc-500 text-sm mb-4">Or find me on</p>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center gap-3 flex-wrap">
                 <a
                   href="https://x.com/thejakeadler"
                   target="_blank"
