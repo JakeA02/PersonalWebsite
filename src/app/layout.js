@@ -57,8 +57,30 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const knowledgePanel = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jake Adler",
+    "url": "https://jakeadler.dev",
+    "image": "https://jakeadler.dev/images/speaking.png",
+    "jobTitle": "Founder and CEO of StorybookYou",
+    "alumniOf": "University of Virginia",
+    "sameAs": [
+      "https://linkedin.com/in/adlerjake",
+      "https://x.com/thejakeadler",
+      "https://github.com/JakeA02",
+      "https://substack.com/@thejakeadler"
+    ]
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(knowledgePanel) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
