@@ -4,14 +4,14 @@
 export const PROJECTS = [
   {
     id: 1,
-    title: "StorybookU",
+    title: "StorybookYou",
     tagline:
       "Empowering children to become the heroes of their own stories through personalized generative AI illustrations.",
     thumbnail: "/images/showcase.png",
     description:
       "Founded and scaled a D2C venture that leverages AI to illustrate children directly into high-quality storybooks. Executed a rapid-to-market strategy, achieving over 100 sales in the first two weeks of November 2025. Currently managing growth as a side hustle.",
     achievements: ["$10K Non-Dilutive Funding", "130+ Units Sold"],
-    link: "https://storybooku.com",
+    link: "https://StorybookYou.com",
   },
   {
     id: 2,

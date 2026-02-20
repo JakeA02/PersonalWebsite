@@ -112,8 +112,8 @@ export default function HeroSection() {
               transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s",
             }}
           >
-            I build <span className="text-zinc-800 font-medium">0-to-1 solutions </span> for {" "}
-            <span className="text-zinc-800 font-medium"> complex problems</span>
+            I build <span className="text-zinc-800 font-medium">0-to-1 </span> {" "}
+            <span className="text-zinc-800 font-medium"> AI Applications and Systems</span>
           </p>
 
           {/* CTA Strip */}

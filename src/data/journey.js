@@ -34,7 +34,7 @@ export const JOURNEY_MILESTONES = [
     id: 3,
     phase: "Venture Incubation",
     date: "Summer 2025",
-    headline: "Solo Founder of StorybookU",
+    headline: "Solo Founder of StorybookYou",
     keyPoints: [
       "3-month intensive program with $10K non-dilutive funding",
       "Wore every hat: founder, lead engineer, marketer",
@@ -78,7 +78,7 @@ export const JOURNEY_MILESTONES = [
     date: "2026",
     headline: "NYC — Joining a High-Growth Team",
     keyPoints: [
-      "StorybookU operating as sustainable side venture",
+      "StorybookYou operating as sustainable side venture",
       "Seeking collaborative, fast-paced environment",
       "Bringing rapid prototyping + AI implementation expertise",
     ],
