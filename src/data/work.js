@@ -85,44 +85,5 @@ export const WORK = [
     technologies: ["Groq API", "RSS Feeds"],
     link: "https://github.com/JakeA02/branching_news",
   },
-  {
-    id: "openclaw",
-    type: "ai_skill",
-    title: "Openclaw Configuration",
-    tagline: "Personal AI agent setup and deployment",
-    icons: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6aMJZbw3yJdHLT5unwsN4adii3fwyirCEVg&s",
-    ],
-    description:
-      "Configured and deployed my personal Openclaw instance (aka. 'Leo'). Focused on suggesting articles and research based on my interests and preferences, as well as tracking health goals.",
-    technologies: ["Openclaw", "AI Agents"],
-    link: "https://github.com/openclaw/openclaw",
-  },
-  {
-    id: "agentic-coding",
-    type: "ai_skill",
-    title: "Agentic Coding",
-    tagline: "AI-powered development workflow and code generation",
-    icons: [
-      "https://brandlogos.net/wp-content/uploads/2025/04/cursor_code_editor-logo_brandlogos.net_r1yfy.png",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9NAHBHbG_tj_AFFrJGCKAWEPDRtvFL28sug&s",
-    ],
-    description:
-      "Extensive experience with AI-assisted development tools including Cursor, Codex, and Claude Code. Leveraging agentic coding patterns to accelerate development, improve code quality, and explore novel solutions to complex problems.",
-    technologies: ["Cursor", "Codex", "Claude Code", "AI-First Development"],
-    link: null,
-  },
-  {
-    id: "Prompt Engineering",
-    type: "ai_skill",
-    title: "Prompt Engineering",
-    tagline: "AI-powered prompt engineering and optimization",
-    icons: [
-      "https://logo.promptengineering.rocks/assets/prompt-engineering-logo.png",
-    ],
-    description:
-      "Extensive experience with prompt engineering and optimization across modalities, including text, images, and audio.",
-    technologies: ["Prompt Engineering"],
-    link: null,
-  }
+
 ];
