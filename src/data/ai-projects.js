@@ -3,34 +3,6 @@
 // =============================================================================
 export const AI_PROJECTS = [
   {
-    id: 1,
-    title: "LLM Batch Processing",
-    tagline: "Large-scale AI processing for image generation and content analysis",
-    icons: [
-      "https://cdn.worldvectorlogo.com/logos/openai-2.svg",
-      "https://cdn.worldvectorlogo.com/logos/python-5.svg"
-    ],
-    description:
-      "Implemented batch processing pipelines for AI-powered image generation at StorybookYou, processing thousands of personalized children's book illustrations. Built YouTube description analysis system for SaveMoneySupportCreators, extracting discount codes from thousands of videos using LLM-powered data extraction.",
-    technologies: ["OpenAI API", "Python", "Batch Processing", "Data Pipelines"],
-    githubUrl: null,
-    impact: "5000+ images processed, 1000+ discount codes extracted",
-  },
-  {
-    id: 2,
-    title: "Agentic Coding",
-    tagline: "AI-powered development workflow and code generation",
-    icons: [
-      "https://brandlogos.net/wp-content/uploads/2025/04/cursor_code_editor-logo_brandlogos.net_r1yfy.png",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9NAHBHbG_tj_AFFrJGCKAWEPDRtvFL28sug&s",
-    ],
-    description:
-      "Extensive experience with AI-assisted development tools including Cursor, Codex, and Claude Code. Leveraging agentic coding patterns to accelerate development, improve code quality, and explore novel solutions to complex problems.",
-    technologies: ["Cursor", "Codex", "Claude Code", "AI-First Development"],
-    githubUrl: null,
-    impact: "Daily workflow integration and AI-first development exposure",
-  },
-  {
     id: 3,
     title: "Virtual Try-On Extension",
     tagline: "Nano-Banana powered Chrome extension for virtual fashion",
@@ -43,19 +15,6 @@ export const AI_PROJECTS = [
     technologies: ["Nano-Banana", "Chrome Extension", "JavaScript"],
     githubUrl: "https://github.com/JakeA02/try-me-on-extension",
     impact: "Live-use AI image application and Chrome extension exposure",
-  },
-  {
-    id: 4,
-    title: "Openclaw Configuration",
-    tagline: "Open-source framework setup and deployment",
-    icons: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6aMJZbw3yJdHLT5unwsN4adii3fwyirCEVg&s"
-    ],
-    description:
-      "Configured and deployed my personal Openclaw (aka. 'Leo'). Mine focuses on suggesting articles and research based on my interests and preferences, as well as tracking my health goals.",
-    technologies: ["Openclaw", "AI Agents"],
-    githubUrl: "https://github.com/openclaw/openclaw",
-    impact: "AI Agent exposure and personal integration",
   },
   {
     id: 5,

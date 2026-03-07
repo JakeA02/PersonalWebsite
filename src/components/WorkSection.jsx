@@ -8,7 +8,7 @@ const TABS = [
   { id: "all", label: "All" },
   { id: "shipped", label: "Startups & Products" },
   { id: "ai", label: "AI Experiments" },
-  { id: "ai_skill", label: "AI Skills" },
+  // { id: "ai_skill", label: "AI Skills" },
 ];
 
 export default function WorkSection() {
