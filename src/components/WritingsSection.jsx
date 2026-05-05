@@ -1,105 +1,168 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
-function ArticleCard({ article, index }) {
-  const [isVisible, setIsVisible] = useState(false);
-
+function useInView(threshold = 0.1) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100 + index * 80);
-    return () => clearTimeout(timer);
-  }, [index]);
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return [ref, visible];
+}
+
+function ArticleRow({ article, index, parentVisible }) {
+  const [hovered, setHovered] = useState(false);
 
   return (
     <a
       href={article.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.12),0_0_0_1px_rgba(251,146,60,0.15)] transition-all duration-300 hover:-translate-y-1"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.08}s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.08}s, box-shadow 0.3s ease, translate 0.3s ease`,
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        alignItems: "baseline",
+        gap: "1.5rem",
+        padding: "1.75rem 0",
+        borderBottom: "1px solid #2a2825",
+        textDecoration: "none",
+        opacity: parentVisible ? 1 : 0,
+        transform: parentVisible ? "translateY(0)" : "translateY(16px)",
+        transition: `opacity 0.5s ease ${0.05 + index * 0.07}s, transform 0.5s ease ${0.05 + index * 0.07}s`,
+        cursor: "pointer",
       }}
     >
-      {/* Cover image */}
-      {article.image ? (
-        <div className="relative w-full h-44 overflow-hidden bg-gradient-to-br from-orange-50 to-amber-50 shrink-0">
-          <Image
-            src={article.image}
-            alt={article.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-        </div>
-      ) : (
-        <div className="w-full h-32 bg-gradient-to-br from-orange-50 to-amber-50 shrink-0" />
-      )}
-
-      {/* Content */}
-      <div className="flex flex-col flex-grow p-6">
-        {/* Date */}
-        {article.date && (
-          <span className="text-xs font-medium text-orange-500 uppercase tracking-widest mb-3">
-            {article.date}
-          </span>
-        )}
-
-        {/* Title */}
-        <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 tracking-tight leading-snug group-hover:text-orange-600 transition-colors duration-200 mb-3">
+      {/* Left: title + excerpt */}
+      <div>
+        <h3
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)",
+            fontWeight: 400,
+            lineHeight: 1.2,
+            color: hovered ? "#d4a853" : "#f0ede6",
+            margin: "0 0 0.5rem 0",
+            letterSpacing: "-0.01em",
+            transition: "color 0.2s ease",
+          }}
+        >
           {article.title}
         </h3>
-
-        {/* Excerpt */}
         {article.excerpt && (
-          <p className="text-zinc-500 text-sm leading-relaxed flex-grow">
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              lineHeight: 1.7,
+              color: "#a8a49c",
+              margin: 0,
+              maxWidth: "60ch",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
             {article.excerpt}
           </p>
         )}
+      </div>
 
-        {/* Read link */}
-        <div className="flex items-center gap-1.5 text-orange-500 text-sm font-medium mt-5 group-hover:gap-2.5 transition-all duration-200">
-          <span>Read on Substack</span>
-          <svg
-            className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      {/* Right: date + arrow */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          gap: "0.5rem",
+          flexShrink: 0,
+        }}
+      >
+        {article.date && (
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.65rem",
+              letterSpacing: "0.06em",
+              color: "#f0ede6",
+              whiteSpace: "nowrap",
+            }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </div>
+            {article.date}
+          </span>
+        )}
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.65rem",
+            color: hovered ? "#d4a853" : "#3a3835",
+            transition: "color 0.2s ease, transform 0.2s ease",
+            transform: hovered ? "translateX(4px)" : "translateX(0)",
+            display: "inline-block",
+          }}
+        >
+          →
+        </span>
       </div>
     </a>
   );
 }
 
-function SkeletonCard({ index }) {
+function SkeletonRow({ index }) {
   return (
     <div
-      className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08),0_0_0_1px_rgba(0,0,0,0.03)] animate-pulse"
-      style={{ animationDelay: `${index * 0.1}s` }}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        alignItems: "baseline",
+        gap: "1.5rem",
+        padding: "1.75rem 0",
+        borderBottom: "1px solid #2a2825",
+        animationDelay: `${index * 0.1}s`,
+      }}
     >
-      <div className="w-full h-44 bg-zinc-100 shrink-0" />
-      <div className="p-6">
-        <div className="h-3 w-24 bg-orange-100 rounded-full mb-3" />
-        <div className="h-5 w-3/4 bg-zinc-100 rounded-lg mb-2" />
-        <div className="h-5 w-1/2 bg-zinc-100 rounded-lg mb-4" />
-        <div className="space-y-2">
-          <div className="h-3.5 w-full bg-zinc-50 rounded" />
-          <div className="h-3.5 w-5/6 bg-zinc-50 rounded" />
-          <div className="h-3.5 w-4/6 bg-zinc-50 rounded" />
-        </div>
-        <div className="h-3 w-28 bg-orange-50 rounded-full mt-5" />
+      <div>
+        <div
+          style={{
+            height: "1.4rem",
+            width: "55%",
+            backgroundColor: "#1e1c1a",
+            borderRadius: "2px",
+            marginBottom: "0.6rem",
+          }}
+        />
+        <div
+          style={{
+            height: "0.7rem",
+            width: "80%",
+            backgroundColor: "#1a1815",
+            borderRadius: "2px",
+          }}
+        />
       </div>
+      <div
+        style={{
+          height: "0.65rem",
+          width: "4rem",
+          backgroundColor: "#1a1815",
+          borderRadius: "2px",
+        }}
+      />
     </div>
   );
 }
@@ -107,25 +170,13 @@ function SkeletonCard({ index }) {
 export default function WritingsSection() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sectionVisible, setSectionVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setSectionVisible(true);
-      },
-      { threshold: 0.05 }
-    );
-    const section = document.getElementById("writings-section");
-    if (section) observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+  const [ref, visible] = useInView();
 
   useEffect(() => {
     fetch("/api/writings")
       .then((r) => r.json())
       .then(({ articles }) => {
-        setArticles(articles.slice(0, 3) || []);
+        setArticles((articles || []).slice(0, 4));
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -133,78 +184,91 @@ export default function WritingsSection() {
 
   return (
     <section
-      id="writings-section"
-      className="py-20 sm:py-28 px-6 bg-gradient-to-b from-white to-[#fffbf7]"
+      id="writing"
+      ref={ref}
+      style={{
+        padding: "clamp(5rem, 12vw, 10rem) clamp(1.5rem, 6vw, 6rem)",
+        borderTop: "1px solid #2a2825",
+      }}
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div
-          className="text-center mb-10 sm:mb-14"
+      {/* Header row */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          marginBottom: "clamp(2rem, 4vw, 3.5rem)",
+          flexWrap: "wrap",
+          gap: "1rem",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(16px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}
+      >
+        <p
           style={{
-            opacity: sectionVisible ? 1 : 0,
-            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.7rem",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#6b6560",
+            margin: 0,
           }}
         >
-          <p className="text-orange-500 font-medium text-sm uppercase tracking-widest mb-3">
-            Writings
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-zinc-900 tracking-tight">
-            What I&apos;m{" "}
-            <span className="bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 bg-clip-text text-transparent">
-              Thinking
-            </span>
-          </h2>
-          <p className="mt-4 text-zinc-500 text-lg max-w-xl mx-auto">
-            Essays on building, AI, and the future
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {loading
-            ? Array.from({ length: 3 }).map((_, i) => (
-                <SkeletonCard key={i} index={i} />
-              ))
-            : articles.map((article, i) => (
-                <ArticleCard key={article.link} article={article} index={i} />
-              ))}
-        </div>
-
-        {/* View all CTA */}
-        {!loading && articles.length > 0 && (
-          <div
-            className="flex justify-center mt-12"
-            style={{
-              opacity: sectionVisible ? 1 : 0,
-              transform: sectionVisible ? "translateY(0)" : "translateY(12px)",
-              transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s",
-            }}
-          >
-            <a
-              href="https://thejakeadler.substack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-200 bg-white text-zinc-700 text-sm font-medium hover:border-orange-300 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 shadow-sm"
-            >
-              View all on Substack
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
-          </div>
-        )}
+          Writing
+        </p>
       </div>
+
+      {/* Article list */}
+      <div
+        style={{
+          borderTop: "1px solid #2a2825",
+        }}
+      >
+        {loading
+          ? Array.from({ length: 3 }).map((_, i) => (
+              <SkeletonRow key={i} index={i} />
+            ))
+          : articles.map((article, i) => (
+              <ArticleRow
+                key={article.link}
+                article={article}
+                index={i}
+                parentVisible={visible}
+              />
+            ))}
+      </div>
+
+      {/* Substack link */}
+      {!loading && articles.length > 0 && (
+        <div
+          style={{
+            marginTop: "2.5rem",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
+          }}
+        >
+          <a
+            href="https://thejakeadler.substack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover-underline"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              letterSpacing: "0.06em",
+              color: "#6b6560",
+              textDecoration: "none",
+              transition: "color 0.2s ease",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#d4a853")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6560")}
+          >
+            All posts on Substack →
+          </a>
+        </div>
+      )}
     </section>
   );
 }

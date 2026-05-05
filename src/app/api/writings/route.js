@@ -37,7 +37,7 @@ function truncate(text, maxLen = 160) {
 
 export async function GET() {
   try {
-    const res = await fetch(FEED_URL, { next: { revalidate: 3600 } });
+    const res = await fetch(FEED_URL, { cache: "no-store" });
     if (!res.ok) throw new Error(`RSS fetch failed: ${res.status}`);
 
     const xml = await res.text();

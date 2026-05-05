@@ -1,14 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, DM_Mono } from "next/font/google";
 import "./globals.css";
+import Nav from "@/components/Nav";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmMono = DM_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
 const getBaseUrl = () => {
@@ -21,11 +25,10 @@ const getBaseUrl = () => {
   return "http://localhost:3000";
 };
 
-
 export const metadata = {
   metadataBase: new URL(getBaseUrl()),
-  title: "Jake Adler | Builder & Founder | UVA CS",
-  description: "I build 0-to-1 solutions for complex problems.",
+  title: "Jake Adler — AI Engineer & Founder",
+  description: "AI Solutions Engineer at Hardshell. Founder of StorybookYou. Building at the intersection of AI and the real world.",
   icons: {
     icon: [
       { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -41,14 +44,14 @@ export const metadata = {
     ],
   },
   openGraph: {
-    title: "Jake Adler | Builder & Founder",
-    description: "I build 0-to-1 solutions for complex problems.",
+    title: "Jake Adler — AI Engineer & Founder",
+    description: "AI Solutions Engineer at Hardshell. Founder of StorybookYou. Building at the intersection of AI and the real world.",
     images: [
       {
         url: "/images/thumbnail.png",
         width: 1400,
         height: 900,
-        alt: "Jake Adler | Builder & Founder",
+        alt: "Jake Adler — AI Engineer & Founder",
       },
     ],
     locale: "en_US",
@@ -60,17 +63,17 @@ export default function RootLayout({ children }) {
   const knowledgePanel = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Jake Adler",
-    "url": "https://jakeadler.dev",
-    "image": "https://jakeadler.dev/images/speaking.png",
-    "jobTitle": "Founder and CEO of StorybookYou",
-    "alumniOf": "University of Virginia",
-    "sameAs": [
+    name: "Jake Adler",
+    url: "https://jakeadler.dev",
+    image: "https://jakeadler.dev/images/speaking.png",
+    jobTitle: "AI Solutions Engineer & Founder",
+    alumniOf: "University of Virginia",
+    sameAs: [
       "https://linkedin.com/in/adlerjake",
       "https://x.com/thejakeadler",
       "https://github.com/JakeA02",
-      "https://substack.com/@thejakeadler"
-    ]
+      "https://substack.com/@thejakeadler",
+    ],
   };
 
   return (
@@ -81,9 +84,8 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(knowledgePanel) }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${cormorant.variable} ${dmMono.variable} antialiased`}>
+        <Nav />
         {children}
       </body>
     </html>

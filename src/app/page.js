@@ -1,13 +1,18 @@
-import { HeroSection, WorkSection, WritingsSection, JourneySection, Footer, CTA } from "@/components";
+import {
+  HeroSection,
+  WhatIDoSection,
+  WritingsSection,
+  ProjectsSection,
+  Footer,
+} from "@/components";
 
 export default function Home() {
   return (
-    <main className="bg-zinc-50">
+    <main style={{ backgroundColor: "#0e0e0e" }}>
       <HeroSection />
-      <WorkSection />
+      <WhatIDoSection />
       <WritingsSection />
-      <JourneySection />
-      <CTA />
+      <ProjectsSection />
       <Footer />
     </main>
   );
