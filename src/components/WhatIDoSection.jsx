@@ -309,8 +309,8 @@ export default function WhatIDoSection() {
               maxWidth: "38ch",
             }}
           >
-            I create custom children&apos;s books by using AI image models to illustrate families directly into the story based on a photo. We customize, print, and ship storybooks internationally. Founded 2025 — on track for
-            thousands of book sales and six figures in revenue in 2026.
+            I create custom children&apos;s books by using AI image models to illustrate families directly into the story based on a photo. We customize, print, and ship storybooks internationally. Founded 2025 — on track to create
+            thousands of books and break six figures in revenue in 2026.
           </p>
 
           <BrowserMockup

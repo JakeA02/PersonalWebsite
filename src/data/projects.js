@@ -12,7 +12,7 @@ export const PROJECTS = [
     id: "savemoneysupportcreators",
     title: "SaveMoneySupportCreators",
     description:
-      "A browser extension that surfaces creator-owned discount codes at checkout, keeping affiliate revenue with independent creators.",
+      "A website that surfaces discount codes from YouTube descriptions, helping users save money and keeping affiliate revenue with independent creators.",
     detail: "Hundreds of codes extracted weekly", 
     url: "https://savemoneysupportcreators.com",
     label: "Shipped",

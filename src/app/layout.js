@@ -48,14 +48,25 @@ export const metadata = {
     description: "AI Solutions Engineer at Hardshell. Founder of StorybookYou. Building at the intersection of AI and the real world.",
     images: [
       {
-        url: "/images/thumbnail.png",
-        width: 1400,
-        height: 900,
+        url: "/images/social/opengraph.png",
+        width: 1200,
+        height: 630,
         alt: "Jake Adler — AI Engineer & Founder",
       },
     ],
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jake Adler — AI Engineer & Founder",
+    description: "AI Solutions Engineer at Hardshell. Founder of StorybookYou. Building at the intersection of AI and the real world.",
+    images: [
+      {
+        url: "/images/social/twitter.png",
+        alt: "Jake Adler — AI Engineer & Founder",
+      },
+    ],
   },
 };
 
