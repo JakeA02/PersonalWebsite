@@ -151,7 +151,7 @@ export default function HeroSection() {
         {photoVisible && (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src="https://storybooku-templates.s3.us-east-1.amazonaws.com/iLab+25+(3).jpg"
+            src="https://storybooku-templates.s3.us-east-1.amazonaws.com/hero-image.webp"
             alt="Jake Adler"
             priority={true}
             style={{
