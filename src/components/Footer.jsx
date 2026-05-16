@@ -44,7 +44,7 @@ export default function Footer() {
           Jake Adler
         </p>
 
-        {/* Candid portrait stamp — place /public/images/candid.jpg */}
+
         {photoVisible && (
           <div
             style={{
@@ -59,7 +59,7 @@ export default function Footer() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://storybooku-templates.s3.us-east-1.amazonaws.com/headshot.webp"
+              src="https://d2mfd276veu1rs.cloudfront.net/headshot.webp"
               alt="Jake Adler"
               style={{
                 width: "100%",

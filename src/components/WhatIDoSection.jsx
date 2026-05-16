@@ -246,7 +246,7 @@ export default function WhatIDoSection() {
           <BrowserMockup
             url="https://hardshell.ai"
             domain="hardshell.ai"
-            src="https://storybooku-templates.s3.us-east-1.amazonaws.com/hardshell-website.webp"
+            src="https://d2mfd276veu1rs.cloudfront.net/hardshell-website.webp"
             alt="Hardshell website"
             accentColor="#0e9453"
           />
@@ -316,7 +316,7 @@ export default function WhatIDoSection() {
           <BrowserMockup
             url="https://storybookyou.com"
             domain="storybookyou.com"
-            src="https://storybooku-templates.s3.us-east-1.amazonaws.com/storybookyou-website.webp"
+            src="https://d2mfd276veu1rs.cloudfront.net/storybookyou-website.webp"
             alt="StorybookYou website"
             accentColor="#5c40b0"
           />
